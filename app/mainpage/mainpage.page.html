@@ -1,0 +1,76 @@
+<ion-content>
+
+    <div id="map-canvas"></div>
+
+    <ion-fab vertical="center" horizontal="end" slot="fixed">
+        <ion-fab-button [attr.color]="getBleColor()" class="bluetooth">
+            <ion-icon name="bluetooth"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="zoomInCurPosition()">
+        <ion-fab-button color="light" class="locate">
+            <ion-icon name="locate"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ng-container *ngIf="!showNavIcon">
+        <ion-row class="ion-align-items-center top-row">
+            <ion-col size="8">
+                <h2>
+                    <ion-text class="font-16">
+                        {{ datetime | date:'yyyy-MM-dd HH:mm:ss' }}
+                    </ion-text>
+                </h2>
+                <ion-grid class="d-flex">
+                    <div class="timeline">
+                        <span class="top-dot"></span>
+                        <span class="btm-dot"></span>
+                    </div>
+                    <ion-text class="font-16 address-text">
+                        {{ address }}
+                    </ion-text>
+                </ion-grid>
+            </ion-col>
+            <ion-col size="4" class="pl-0 pr-0">
+                <span class="font-52">{{ totalDist | number: '1.1-1' }}</span>
+                <span class="font-12">KM</span>
+            </ion-col>
+        </ion-row>
+    </ng-container>
+    <ion-row bg-white class="nav-row">
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center btn-row">
+        <ion-fab>
+            <ng-container *ngIf="showNavIcon">
+                <ion-fab-button color="primary" (click)="startNavigate()">
+                    <ion-icon name="paper-plane" mode="ios" class="font-32"></ion-icon>
+                </ion-fab-button>
+            </ng-container>
+            <ng-container *ngIf="!showNavIcon">
+                <ion-fab-button color="primary" (click)="stopNavigate()">
+                    <div class="square"></div>
+                </ion-fab-button>
+            </ng-container>
+        </ion-fab>
+    </ion-row>
+
+    <ng-container *ngIf="showBackdrop">
+        <div class="complete-div">
+            <img src="/assets/complete.png" />
+            <div class="msg-div">
+                <h4>
+                    <ion-text color="tertiary" class="font-16">恭喜您今日賺進</ion-text>
+                </h4>
+                <h4 class="mt-1">
+                    <ion-text color="tertiary" class="font-16">{{ earned | number: '1.0-0' }}元</ion-text>
+                </h4>
+            </div>
+
+            <ion-row class="ion-justify-content-center cancel-row" (click)="closeBackdrop()">
+                <div class="cancel-div">x</div>
+            </ion-row>
+        </div>
+    </ng-container>
+</ion-content>

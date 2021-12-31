@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>安全性</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none" detail class="ion-margin-vertical" [routerLink]="['/phone-change']">
+    <ion-label>變更電話號碼</ion-label>
+  </ion-item>
+  <ion-item lines="none" detail (click)="deleteAccount()">
+    <ion-label>刪除我的帳號</ion-label>
+  </ion-item>
+</ion-content>

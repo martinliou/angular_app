@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>開車設定</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="false" [options]="slideOpts" #slide>
+    <ion-slide>
+      <ion-row class="ion-justify-content-center mt-8">
+        <h4>依照問題選出最適合的答案</h4>
+        <h4>以利於選到最適合的任務</h4>
+      </ion-row>
+
+      <ion-button color="primary" expand="block" class="verify-btn" (click)="nextSlide()">下一步</ion-button>
+    </ion-slide>
+
+    <ng-container *ngFor="let item of prefData; let i = index">
+      <ion-slide>
+        <ion-row class="ml-4 mt-10">
+          <ion-col size="12" class="mb-1 ion-text-left">
+            <ion-text class="font-20">{{ i+1 }}. {{ item.title }}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-radio-group>
+          <ion-row class="ml-6">
+            <ng-container *ngFor="let option of item.options">
+              <ion-col size="6" class="ion-no-padding">
+                <ion-item lines="none">
+                  <ng-container *ngIf="item.is_multi == 0">
+                    <ion-radio color="primary" class="ion-no-margin" (ionSelect)="radioChange(item.options, option)"></ion-radio>
+                  </ng-container>
+                  <ng-container *ngIf="item.is_multi == 1">
+                    <ion-checkbox color="primary" class="ion-no-margin" [(ngModel)]="option.checked"></ion-checkbox>
+                  </ng-container>
+                  <ion-label class="ml-2 mt-0 mb-0">{{ option.name }}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ng-container>
+          </ion-row>
+        </ion-radio-group>
+
+        <ng-container *ngIf="i == 0">
+          <ion-row class="next-row">
+            <ion-col offset="8" (click)="nextSlide(item)">
+              <h4 class="next-icon">></h4>
+              <h4 class="mt-0">下一題</h4>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+
+        <ng-container *ngIf="i != 0 && i != prefData.length - 1 && prefData.length > 2">
+          <ion-row class="next-row">
+            <ion-col size="4" (click)="prevSlide()">
+              <h4 class="next-icon">&lt;</h4>
+              <h4 class="mt-0">上一題</h4>
+            </ion-col>
+            <ion-col offset="4" size="4" (click)="nextSlide(item)">
+              <h4 class="next-icon">&gt;</h4>
+              <h4 class="mt-0">下一題</h4>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+
+        <ng-container *ngIf="i == prefData.length - 1">
+          <ion-row class="next-row">
+            <ion-col size="4" (click)="prevSlide()">
+              <h4 class="next-icon">&lt;</h4>
+              <h4 class="mt-0">上一題</h4>
+            </ion-col>
+            <ion-col offset="4" size="4">
+              <ion-button color="primary" (click)="complete()">完成</ion-button>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+      </ion-slide>
+    </ng-container>
+
+  </ion-slides>
+</ion-content>

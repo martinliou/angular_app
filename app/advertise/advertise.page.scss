@@ -1,0 +1,62 @@
+ion-header {
+  .mission-icon {
+    position: absolute;
+    font-size: 48px;
+    right: 16px;
+    top: -3px;
+    width: 35px;
+  }
+
+  .switch-icon {
+    position: absolute;
+    left: 16px;
+    top: -1.9em;
+    width: 5em;
+  }
+}
+
+ion-content {
+  ion-segment {
+    padding: 16px 32px;
+    height: 4.5em;
+
+    ion-segment-button {
+      border-radius: 2em;
+      margin: 0 -10px;
+
+      &:first-of-type {
+        border-top-left-radius: 3em;
+        border-bottom-left-radius: 3em;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border-right: none !important;
+
+        &.segment-button-checked {
+          background: radial-gradient(circle at right, transparent 1.4em, var(--ion-color-primary) 0) right;
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+        }
+      }
+
+      &:nth-of-type(2) {
+        border-radius: 4em;
+        border-left: 1px solid var(--ion-color-primary);
+        border-right: 1px solid var(--ion-color-primary);
+      }
+
+      &:last-of-type {
+        border-top-right-radius: 3em;
+        border-bottom-right-radius: 3em;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        border-left: none !important;
+
+        &.segment-button-checked {
+          background: radial-gradient(circle at left, transparent 1.4em, var(--ion-color-primary) 0) left;
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+}

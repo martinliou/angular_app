@@ -1,0 +1,30 @@
+ion-content {
+  --ion-background-color: white !important;
+
+  ion-slides {
+    height: 100%;
+  }
+
+  ion-slide {
+    display: block;
+
+    .verify-btn {
+      position: absolute;
+      top: 73vh;
+      left: 25%;
+      width: 50%;
+    }
+
+    ion-row.next-row {
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      top: 70vh;
+
+      .next-icon {
+        transform: scaleY(2);
+        margin-bottom: 4px;
+      }
+    }
+  }
+}

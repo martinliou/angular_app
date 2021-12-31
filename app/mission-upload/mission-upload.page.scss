@@ -1,0 +1,35 @@
+ion-header {
+  ion-text {
+    &.upload-text {
+      position: absolute;
+      right: 16px;
+      top: 15px;
+      font-size: 20px;
+    }
+  }
+}
+
+ion-content {
+  ion-row {
+    &.btm-row {
+      width: 100%;
+      position: absolute;
+      background: var(--ion-color-primary);
+      color: white;
+      bottom: 0;
+      z-index: 10;
+    }
+
+    &.camera-row {
+      width: 36vh;
+      height: 64vh;
+      border: 1px dashed #2a2a2a;
+      margin: 16px calc(50vw - 18vh) 16px calc(50vw - 18vh);
+
+      .photo-img {
+        width: 36vh;
+        height: 64vh;
+      }
+    }
+  }
+}

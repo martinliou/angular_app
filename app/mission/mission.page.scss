@@ -1,0 +1,37 @@
+ion-content {
+  ion-row {
+    position: relative;
+    box-shadow: 1px 1px 5px gray;
+
+    div.top-bar {
+      height: 8px;
+      width: 7em;
+      position: absolute;
+      margin-top: -4px;
+      border-radius: 1em;
+
+      &.incomplete {
+        background: var(--ion-color-primary);
+      }
+
+      &.complete {
+        background: var(--ion-color-medium);
+      }
+    }
+
+    &.mission-row {
+      border-radius: 16px;
+
+      .view-detail {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .max-content-chip {
+    width: max-content;
+  }
+}

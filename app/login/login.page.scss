@@ -1,0 +1,19 @@
+ion-content {
+  --ion-background-color: var(--ion-color-primary);
+
+  ion-item {
+    width: 70%;
+    --ion-background-color: transparent !important;
+  }
+
+  ion-button {
+    --background: white !important;
+  }
+}
+
+:host {
+  .item-interactive.ion-valid {
+    --border-color: white !important;
+    --highlight-background: default !important;
+  }
+}

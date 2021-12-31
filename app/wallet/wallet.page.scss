@@ -1,0 +1,17 @@
+ion-row {
+  ion-col:nth-child(1) {
+    border-right: 1px solid #e4e4e4;
+  }
+
+  &.trans-sel {
+    height: 150px !important;
+
+    .trans-sel-wrapper {
+      width: 50px;
+
+      p.first-para {
+        margin-top: -2px !important;
+      }
+    }
+  }
+}

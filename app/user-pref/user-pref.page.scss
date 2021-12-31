@@ -1,0 +1,13 @@
+ion-content {
+  --ion-background-color: var(--ion-color-primary);
+
+  ion-card {
+    margin: 32px;
+    border-radius: 16px;
+    min-height: 80vh;
+  }
+
+  ion-item {
+    --min-height: 36px;
+  }
+}

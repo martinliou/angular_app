@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>歷史訂單</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-margin-bottom">
+  <ng-container *ngFor="let item of historyData">
+    <ion-row bg-white class="ion-margin-vertical" (click)="showDetail(item)">
+      <ion-col class="d-flex ion-justify-content-between ion-align-items-center pt-2 pb-2 pl-2 pr-2">
+        <span>
+          <h6 class="mt-0 mb-1">{{ item.mission_name }}</h6>
+          <h6 class="mt-0 mb-0">{{ item.datetime.split(' ').join('T') + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}</h6>
+        </span>
+        <span>
+          <h6 class="mt-0 mb-1">C{{ item.mission_id | number:'8.0' | trimComma }}-{{ item.order_id }}</h6>
+          <h6 class="mt-0 mb-0" float-right>NT${{ item.earned | number: '1.0-0' }}</h6>
+        </span>
+      </ion-col>
+
+      <img class="map" [src]="item.photo" onerror="this.onerror=null;this.src='../../assets/ImageNotFound.png' ">
+    </ion-row>
+
+    <ion-row class="medium-row"></ion-row>
+  </ng-container>
+</ion-content>

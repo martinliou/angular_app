@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back" (click)="navigateBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>交易紀錄</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 class="ion-text-center">
+    <ion-text color="primary">
+      <ng-container *ngIf="startYear > 0">{{ startYear }}年</ng-container>
+      <ng-container *ngIf="startMonth > 0">{{ startMonth }}月</ng-container>
+      <ng-container *ngIf="startDay > 0">{{ startDay }}日</ng-container>
+      <ng-container *ngIf="endYear > 0"> - {{ endYear }}年</ng-container>
+      <ng-container *ngIf="endMonth > 0">{{ endMonth }}月</ng-container>
+      <ng-container *ngIf="endDay > 0">{{ endDay }}日</ng-container>
+    </ion-text>
+  </h3>
+  <ion-row class="font-14">
+    <ion-col class="d-flex ion-align-items-center ion-justify-content-between">
+      <div class="ml-1">
+        支出
+        <ion-text color="danger" class="ml-1 mr-1">${{ expenditure }}</ion-text>
+        收入
+        <ion-text color="success" class="ml-1 mr-1">${{ income }}</ion-text>
+      </div>
+      <div class="mr-1 d-flex">
+        <span class="d-flex ion-align-items-center" (click)="showCategory()">
+          <ion-icon name="list" color="primary" class="font-20 ml-2"></ion-icon>
+          類別
+        </span>
+        <span class="d-flex ion-align-items-center" (click)="showCalender()">
+          <ion-icon name="calendar" color="primary" class="font-20 ml-2"></ion-icon>
+          日期
+        </span>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-list class="ion-margin-bottom">
+    <ng-container *ngFor="let item of transactionData">
+      <ion-item lines="none" class="mb-1" (click)="viewDetail(item)">
+        <ion-label>
+          <h4 class="font-16">
+            <ng-container *ngIf="item.type == ADV_TYPE">
+              訂單：A{{ item.id | number:'8.0' | trimComma }}
+            </ng-container>
+            <ng-container *ngIf="item.type == WITHDRAW_TYPE">
+              訂單：B{{ item.id | number:'8.0' | trimComma }}
+            </ng-container>
+          </h4>
+          <h4 class="font-12 mt-1 mb-1">
+            <ng-container *ngIf="item.type == ADV_TYPE">
+              任務訂單
+            </ng-container>
+            <ng-container *ngIf="item.type == WITHDRAW_TYPE">
+              提款
+            </ng-container>
+          </h4>
+          <h4 class="font-12">
+            {{ item.datetime.split(' ').join('T') + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}
+          </h4>
+        </ion-label>
+        <ion-label slot="end" class="ion-text-right">
+          <ion-text class="font-20">
+            <ng-container *ngIf="item.type == 0">
+              +NT {{ item.amount | number:'1.0-0' }}
+            </ng-container>
+            <ng-container *ngIf="item.type == 1">
+              -NT {{ item.amount | number:'1.0-0' }}
+            </ng-container>
+          </ion-text>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+  <ion-item hidden="true">
+    <ion-datetime #startDate [pickerOptions]="startPickerOptions" displayFormat="YYYY/MM/DD" min="2019-01-01"
+      mode="ios">
+    </ion-datetime>
+    <ion-datetime #endDate [pickerOptions]="endPickerOptions" displayFormat="YYYY/MM/DD" min="2019-01-01" mode="ios">
+    </ion-datetime>
+  </ion-item>
+</ion-content>

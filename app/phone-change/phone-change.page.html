@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>變更電話號碼</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-justify-content-center mt-20 mb-20">
+    <img src="/assets/icon/mobile.png" width="250px" />
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center mt-20">
+    <ion-item>
+      <ion-label class="d-flex ion-align-items-center">
+        <ion-icon name="person" class="font-20 mr-1"></ion-icon>
+        手機：
+      </ion-label>
+      <ion-input [(ngModel)]="phone" type="number"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row class="ion-justify-content-center mt-2">
+    <ion-item>
+      <ion-label class="d-flex ion-align-items-center">
+        <ion-icon name="lock" class="font-20"></ion-icon>
+      </ion-label>
+      <ion-input [(ngModel)]="verifyCode" placeholder="請輸入驗證碼"></ion-input>
+      <ion-label slot="end" class="float-right-label">
+        <ng-container *ngIf="verifyRequire">
+          <ion-button shape="round" (click)="fetchVerifyCode()">
+            <ion-text color="primary">
+              獲取驗證碼
+            </ion-text>
+          </ion-button>
+        </ng-container>
+        <ng-container *ngIf="!verifyRequire">
+          <ion-button shape="round" (click)="fetchVerifyCode()">
+            <ion-text color="primary">
+              送出
+            </ion-text>
+          </ion-button>
+        </ng-container>
+      </ion-label>
+    </ion-item>
+  </ion-row>
+</ion-content>

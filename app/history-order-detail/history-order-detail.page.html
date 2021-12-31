@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>訂單詳情</ion-title>
+    <ion-icon src="assets/icon/customer.svg" (click)="showHelp()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row bg-white class="ion-margin-bottom" *ngIf="orderData">
+    <img id="map-canvas" [src]="orderData.photo" onerror="this.onerror=null;this.src='../../assets/ImageNotFound.png' ">
+
+    <ion-col class="d-flex ion-justify-content-between ion-align-items-center pt-2 pb-2 pl-3 pr-3">
+      <span>
+        <h6 class="mt-0 mb-1">{{ orderData.mission_name }}</h6>
+        <h6 class="mt-0 mb-0">{{ orderData.datetime + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}</h6>
+      </span>
+      <span class="font-20">NT${{ orderData.earned | number: '1.0-0' }}</span>
+    </ion-col>
+
+    <ion-col size="12" class="pb-0 pl-3">
+      <ion-grid class="d-flex">
+        <div class="timeline">
+          <span class="top-dot"></span>
+          <span class="btm-dot"></span>
+        </div>
+
+        <div class="address-text">
+          <h4 class="font-16 address-first-text ion-no-margin">
+            <ion-text color="medium">{{ orderData.start_addr || '未知地點'}}</ion-text>
+          </h4>
+          <h4 class="font-16 address-last-text ion-margin-top">
+            <ion-text color="medium">{{ orderData.end_addr || '未知地點' }}</ion-text>
+          </h4>
+        </div>
+      </ion-grid>
+    </ion-col>
+
+    <ion-col size="12" class="pt-1 pl-3 pb-3">
+      <span>此趟完成 {{ orderData.drive_distance | number:'1.3-3' }}公里</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="medium-row">
+    <ion-text color="medium" class="font-14 ml-2 mb-1">幫助</ion-text>
+  </ion-row>
+
+  <ion-list bg-white class="ion-margin-bottom ion-no-padding">
+    <ng-container *ngFor="let item of historyQA">
+      <ion-item detail (click)="viewDetail(item)">
+        {{ item.title }}
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

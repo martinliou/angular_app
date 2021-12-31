@@ -1,0 +1,115 @@
+// App Styles
+// ----------------------------------------------------------------------------
+// Put style rules here that you want to apply to the entire application. These
+// styles are for the entire app and not just one component. Additionally, this
+// file can hold Sass mixins, functions, and placeholder classes to be imported
+// and used throughout the application.
+
+@for $i from 0 through 25 {
+  .mt-#{$i} {
+    margin-top: #{4 * $i}px !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{4 * $i}px !important;
+  }
+  .mr-#{$i} {
+    margin-right: #{4 * $i}px !important;
+  }
+  .ml-#{$i} {
+    margin-left: #{4 * $i}px !important;
+  }
+  .pt-#{$i} {
+    padding-top: #{4 * $i}px !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{4 * $i}px !important;
+  }
+  .pr-#{$i} {
+    padding-right: #{4 * $i}px !important;
+  }
+  .pl-#{$i} {
+    padding-left: #{4 * $i}px !important;
+  }
+}
+
+@for $i from 0 through 100 {
+  .font-#{$i} {
+    font-size: #{$i}px !important;
+  }
+}
+
+ion-content {
+  --ion-background-color: var(--ion-color-light);
+}
+
+[bg-white] {
+  background: white !important;
+}
+
+[bottom-line] {
+  border-bottom: 1px solid var(--ion-color-light);
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+ion-item {
+  --ion-background-color: #fff;
+}
+
+ion-toolbar {
+  --ion-background-color: var(--ion-color-primary);
+  color: white;
+
+  ion-buttons {
+    position: absolute;
+  }
+
+  ion-title {
+    text-align: center;
+  }
+}
+
+.bank-style {
+  .alert-wrapper {
+    min-width: 80% !important;
+    .alert-radio-label {
+      padding-inline-start: 36px !important;
+    }
+  }
+}
+
+.trans-action-btn-style {
+  width: max-content !important;
+  color: var(--ion-color-dark) !important;
+}
+
+.location-style {
+  .alert-wrapper {
+    min-width: 86% !important;
+    .alert-radio-label {
+      text-overflow: inherit !important;
+      white-space: normal !important;
+      padding-inline-start: 36px !important;
+      line-height: 1em;
+    }
+  }
+}
+
+.danger-color {
+  color: #dc3545 !important;
+}
+
+.adv-popover {
+  .popover-content {
+    left: 10% !important;
+    width: 80% !important;
+  }
+}
+
+.eula {
+  .alert-message {
+    max-height: 60vh !important;
+  }
+}

@@ -1,0 +1,22 @@
+ion-content {
+  ion-item {
+    ion-thumbnail {
+      width: 28px;
+      height: 28px;
+    }
+
+    ion-label.ion-text-right {
+      max-width: 3em;
+    }
+
+    .card-num {
+      &[mode="ios"] {
+        font-family: -apple-system;
+      }
+
+      &[mode="md"] {
+        font-family: fantasy;
+      }
+    }
+  }
+}

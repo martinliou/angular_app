@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>系統設定</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none" class="ion-margin-vertical" detail (click)="editPerson()">
+    <ion-avatar slot="start">
+      <ng-container *ngIf="userData.photo_thumb_url">
+        <img [src]="userData.photo_thumb_url" />
+      </ng-container>
+      <ng-container *ngIf="!userData.photo_thumb_url">
+        <img src="../../assets/ImageNotFound.png" />
+      </ng-container>
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ userData.username }}</h2>
+      <ion-text color="medium">
+        <p>{{ userData.phone_number }}</p>
+      </ion-text>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none" detail bottom-line [routerLink]="['/privacy-setting']">
+    <ion-label>隱私設定</ion-label>
+  </ion-item>
+
+  <ion-item lines="none" detail class="ion-margin-bottom" (click)="showHelp()">
+    <ion-label>聯絡客服</ion-label>
+  </ion-item>
+
+  <ion-item lines="none" detail bottom-line (click)="showAbout()">
+    <ion-label>關於我們</ion-label>
+  </ion-item>
+  <ion-item lines="none" detail class="ion-margin-bottom" (click)="showPrivacy()">
+    <ion-label>隱私政策</ion-label>
+  </ion-item>
+
+  <ion-item lines="none" detail [routerLink]="['/ble-setting']">
+    <ion-label>藍芽設定</ion-label>
+  </ion-item>
+</ion-content>

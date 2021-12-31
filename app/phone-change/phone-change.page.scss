@@ -1,0 +1,14 @@
+ion-content {
+  ion-item {
+    width: 80%;
+    --ion-background-color: transparent !important;
+  }
+
+  ion-button {
+    --background: white !important;
+  }
+
+  ion-label.float-right-label {
+    margin-right: -16px;
+  }
+}

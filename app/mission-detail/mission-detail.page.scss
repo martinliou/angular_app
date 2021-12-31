@@ -1,0 +1,28 @@
+ion-header {
+  ion-icon {
+    width: 1.6em;
+    height: 1.6em;
+    position: absolute;
+    right: 16px;
+    top: 15px;
+  }
+}
+
+ion-content {
+  ion-progress-bar {
+    height: 12px !important;
+    border-radius: 32px;
+    --buffer-background: var(--ion-color-medium);
+  }
+
+  .verify-btn {
+    width: 80%;
+    margin-top: calc(75vh - 23em);
+    margin-left: 10%;
+    margin-bottom: 1em;
+  }
+
+  img {
+    max-height: 360px;
+  }
+}

@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>提款</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="highlight-row pb-1 pt-1 ion-align-items-center">
+    <ion-col size="10" class="font-12 d-flex ion-align-items-center">
+      <span class="notification mr-1">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </span>
+      本周免費提款次數還剩：{{ withdraw_avail_times }}次
+    </ion-col>
+    <ion-col class="d-flex ion-align-items-center ion-justify-content-end mr-1" (click)="showHelp()">
+      <ion-icon name="help-circle-outline" color="medium"></ion-icon>
+    </ion-col>
+  </ion-row>
+
+  <ion-item lines="none" detail class="mb-4" [routerLink]="['/bank-account']">
+    <ion-label>
+      <h3>從我的餘額提款至</h3>
+      <h5 class="font-10 d-flex ion-align-items-center mt-2">
+        <ion-icon name="card" class="font-16 mr-2"></ion-icon>
+        {{ bankData.bank_name }}
+      </h5>
+    </ion-label>
+    <h5 slot="end" class="card-num pr-1" [attr.mode]="platform">
+      * {{ bankData.bank_account }}
+    </h5>
+  </ion-item>
+
+  <ion-row bg-white>
+    <ion-col>
+      <p class="font-16 mt-4 mb-1 pl-1">提款金額</p>
+      <ion-item class="withdraw-item">
+        <ion-icon name="logo-usd"></ion-icon>
+        <ion-input mode="md" type="number" placeholder="0.00" class="font-24" [(ngModel)]="withdraw"></ion-input>
+      </ion-item>
+      <p class="font-12 d-flex ion-align-items-center mt-2 ml-1">
+        <ion-checkbox class="mr-1" (ionChange)="changeWithdraw($event)"></ion-checkbox>
+        提出目前餘額
+      </p>
+    </ion-col>
+  </ion-row>
+
+  <ion-text color="medium" class="pl-2 font-10 d-flex ion-align-items-center mt-2 mb-2">
+    <ion-icon name="information-circle-outline" class="mr-1"></ion-icon>
+    每周有一次免費提款，您可以自行點選提。
+  </ion-text>
+
+  <ion-button color="primary" expand="block" class="verify-btn" (click)="confirm()">確認</ion-button>
+</ion-content>

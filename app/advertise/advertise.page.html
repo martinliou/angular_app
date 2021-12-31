@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ng-container *ngIf="ttype == 0">
+        <img src="/assets/switch-1.png" class="switch-icon" (click)="switchType(1)">
+      </ng-container>
+      <ng-container *ngIf="ttype == 1">
+        <img src="/assets/switch-2.png" class="switch-icon" (click)="switchType(0)">
+      </ng-container>
+      廣告清單
+      <img src="/assets/icon/mission.png" [routerLink]="['/mission']" class="mission-icon">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment mode="ios" (ionChange)="segmentChanged($event)" class="ion-padding">
+    <ion-segment-button mode="ios" *ngFor="let item of curTags" [value]="item.torder"
+      [disabled]="item.enabled == '1' ? 'false': 'true'" [checked]="item.checked == 1 ? 'true': 'false'">
+      <ion-label>{{ item.name }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-row>
+    <ng-container *ngFor="let item of curAdvData">
+      <ion-col size="6" (click)="viewDetail(item)">
+        <ion-card class="ion-no-margin">
+          <ion-card-content class="ion-no-padding" bg-white>
+            <img [src]="item.photo" height="200"
+              onerror="this.onerror=null;this.src='../../assets/ImageNotFound.png' " />
+            <ion-row>
+              <ion-col class="pb-0">
+                <ion-text color="primary">
+                  ${{ item.price_per_km * item.distance | number:'1.0-0' }}
+                </ion-text>
+              </ion-col>
+              <ion-col class="pb-0 ion-text-right pr-4">
+                <ion-text color="medium">
+                  {{ item.cur_count }}/{{ item.headcount }}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="pt-0">
+                <ion-text color="medium" class="font-14">
+                  預估完成天數{{ item.days }}天
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ng-container>
+  </ion-row>
+</ion-content>

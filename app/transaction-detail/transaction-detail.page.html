@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>交易紀錄詳情</ion-title>
+    <ion-icon src="assets/icon/customer.svg" (click)="showHelp()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 class="ion-text-center">
+    <ion-text>
+      <ng-container *ngIf="trans_data.order_status == 0">提款申請中</ng-container>
+      <ng-container *ngIf="trans_data.order_status == 1">提款成功</ng-container>
+      <ng-container *ngIf="trans_data.order_status == 2">提款失敗</ng-container>
+    </ion-text>
+  </h3>
+  <h3 class="ion-text-center mt-1 mb-3">
+    <ion-text>
+      NT {{ trans_data.amount }}
+    </ion-text>
+  </h3>
+
+  <ion-row bg-white class="pt-2 pb-2 pl-2">
+    <ion-col size="3">
+      <ion-text color="medium">
+        提出帳戶
+      </ion-text>
+    </ion-col>
+    <ion-col>
+      {{ trans_data.bank_account }}
+    </ion-col>
+  </ion-row>
+  <ion-row bg-white class="pt-2 pb-2 pl-2">
+    <ion-col size="3">
+      <ion-text color="medium">
+        交易時間
+      </ion-text>
+    </ion-col>
+    <ion-col>
+      {{ trans_data.datetime.split(' ').join('T') + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}
+    </ion-col>
+  </ion-row>
+  <ion-row bg-white class="pt-2 pb-2 pl-2">
+    <ion-col size="3">
+      <ion-text color="medium">
+        類別名稱
+      </ion-text>
+    </ion-col>
+    <ion-col>
+      提款
+    </ion-col>
+  </ion-row>
+  <ion-row bg-white class="pt-2 pb-2 pl-2">
+    <ion-col size="3">
+      <ion-text color="medium">
+        交易序號
+      </ion-text>
+    </ion-col>
+    <ion-col>
+      B{{ trans_data.id | number:'8.0' | trimComma }}
+    </ion-col>
+  </ion-row>
+
+  <ion-row bg-white class="pt-2 pb-2 pl-2" *ngIf="trans_data.order_status == 2">
+    <ion-col size="3">
+      <ion-text color="medium">
+        失敗原因
+      </ion-text>
+    </ion-col>
+    <ion-col>
+      {{ trans_data.comment }}
+    </ion-col>
+  </ion-row>
+
+</ion-content>

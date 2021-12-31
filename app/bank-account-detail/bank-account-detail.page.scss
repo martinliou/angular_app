@@ -1,0 +1,30 @@
+ion-content {
+  ion-row {
+    &.top-row {
+      color: white;
+      padding: 6px 8px;
+    }
+
+    &.success-row {
+      background: var(--ion-color-success-shade);
+    }
+
+    &.danger-row {
+      background: var(--ion-color-danger);
+    }
+
+    &.warn-row {
+      background: var(--ion-color-warning);
+    }
+  }
+
+  ion-item {
+    --padding-start: 0 !important;
+  }
+
+  ion-button.confirm-btn {
+    margin-top: 2em;
+    width: 80%;
+    margin-left: 10%;
+  }
+}

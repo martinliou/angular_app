@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>銀行帳號</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="bankData.accept_status == 0">
+    <ion-row class="top-row warn-row ion-align-items-center">
+      <ion-icon class="font-24 mr-1" name="alert"></ion-icon>
+      尚未驗證
+    </ion-row>
+  </ng-container>
+  <ng-container *ngIf="bankData.accept_status == 1">
+    <ion-row class="top-row success-row ion-align-items-center">
+      <ion-icon class="font-24 mr-1" name="checkmark-circle"></ion-icon>
+      已驗證
+    </ion-row>
+  </ng-container>
+  <ng-container *ngIf="bankData.accept_status == 2">
+    <ion-row class="top-row danger-row ion-align-items-center">
+      <ion-icon class="font-24 mr-1" name="close-circle"></ion-icon>
+      已拒絕
+    </ion-row>
+  </ng-container>
+  <ng-container *ngFor="let item of requiredData">
+    <ion-item>
+      <ion-label class="ml-3">
+        <ion-text color="dark">
+          <h3>{{ item.title }}</h3>
+        </ion-text>
+        <ion-text color="medium">
+          <p>{{ item.content }}</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ng-container>
+  <ng-container *ngIf="bankData.accept_status == 1">
+    <ion-button color="primary" expand="block" class="confirm-btn" (click)="setAsDefault()">作為預設帳戶
+    </ion-button>
+  </ng-container>
+</ion-content>

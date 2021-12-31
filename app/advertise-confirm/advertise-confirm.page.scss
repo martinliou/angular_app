@@ -1,0 +1,23 @@
+ion-header {
+  ion-icon {
+    width: 1.6em;
+    height: 1.6em;
+    position: absolute;
+    right: 16px;
+    top: 15px;
+  }
+}
+
+ion-content {
+  ion-select {
+    min-width: 12em !important;
+    text-align: right !important;
+  }
+
+  .verify-btn {
+    margin-top: 4em;
+    color: white;
+    width: 50%;
+    margin-left: 25%;
+  }
+}

@@ -1,0 +1,52 @@
+ion-header {
+  ion-icon {
+    width: 1.6em;
+    height: 1.6em;
+    position: absolute;
+    right: 16px;
+    top: 15px;
+  }
+}
+
+ion-content {
+  #map-canvas {
+    min-height: 250px;
+    width: 100%;
+  }
+
+  .address-text {
+    margin-top: -8px;
+  }
+
+  div.timeline {
+    position: relative;
+    height: 2.5em;
+    border-left: 1px solid var(--ion-color-medium);
+    width: 10px;
+
+    .top-dot {
+      position: absolute;
+      left: -4px;
+      top: -3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      background: var(--ion-color-dark);
+    }
+
+    .btm-dot {
+      position: absolute;
+      left: -4px;
+      bottom: 0px;
+      width: 8px;
+      height: 8px;
+      background: var(--ion-color-dark);
+    }
+  }
+
+  ion-row.medium-row {
+    background: var(--ion-color-light);
+    height: 44px;
+    align-items: flex-end;
+  }
+}

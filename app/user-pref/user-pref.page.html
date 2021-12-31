@@ -1,0 +1,45 @@
+<ion-content>
+  <ion-card bg-white class="ion-padding-bottom">
+    <ion-row class="ion-justify-content-center ion-margin-vertical">
+      <ion-text class="font-28">
+        用車習慣
+      </ion-text>
+    </ion-row>
+
+    <ng-container *ngFor="let item of prefData; let i = index">
+      <ng-container *ngIf="item.advance_only == 0">
+        <ion-row class="ml-4">
+          <ion-col size="12" class="mb-1">
+            <ion-text class="font-20">{{ i+1 }}. {{ item.title }}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-radio-group>
+          <ion-row class="ml-6">
+            <ng-container *ngFor="let option of item.options">
+              <ion-col size="6" class="ion-no-padding">
+                <ion-item lines="none">
+                  <ng-container *ngIf="item.is_multi == 0">
+                    <ion-radio color="primary" class="ion-no-margin" (ionSelect)="radioChange(item.options, option)">
+                    </ion-radio>
+                  </ng-container>
+                  <ng-container *ngIf="item.is_multi == 1">
+                    <ion-checkbox color="primary" class="ion-no-margin" [(ngModel)]="option.checked"></ion-checkbox>
+                  </ng-container>
+                  <ion-label class="ml-2 mt-0 mb-0">{{ option.name }}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ng-container>
+          </ion-row>
+        </ion-radio-group>
+      </ng-container>
+    </ng-container>
+  </ion-card>
+
+  <ion-row class="ion-justify-content-center ion-margin-bottom">
+    <ion-col size="8">
+      <ion-button expand="full" color="light" (click)="agree()">
+        <ion-text color="primary">完成</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

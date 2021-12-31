@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ng-container *ngIf="type == 0">個人訊息</ng-container>
+      <ng-container *ngIf="type == 1">系統通知</ng-container>
+      <ng-container *ngIf="type == 2">錢包更新</ng-container>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="type == 0">
+    <ion-row>
+      <ion-col class="ion-padding-horizontal mt-4" size="12">
+        <ion-text color="dark" class="font-24 mr-2">{{ item.title }}</ion-text>
+        <ion-text color="medium" class="font-12">{{ item.publish_at.split(' ').join('T') + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}</ion-text>
+      </ion-col>
+      <ion-col class="ion-padding-horizontal" size="12">
+        <ion-text color="dark" class="font-18">{{ getContent(item) }}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+
+  <ng-container *ngIf="type == 1">
+    <ng-container *ngIf="item.type == 0">
+      <ion-row>
+        <ng-container *ngFor="let photoItem of item.photos">
+          <ion-col size="12">
+            <ng-container *ngIf="photoItem.type == 1">
+              <img [src]="photoItem.photo_large_url" width="100%" />
+            </ng-container>
+          </ion-col>
+        </ng-container>
+        <ion-col class="ion-padding-horizontal mt-4" size="12">
+          <ion-text color="dark" class="font-24 mr-2">{{ item.title }}</ion-text>
+          <ion-text color="medium" class="font-12">{{ item.publish_at.split(' ').join('T') + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}</ion-text>
+        </ion-col>
+        <ion-col class="ion-padding-horizontal" size="12">
+          <ion-text color="dark" class="font-18" [innerHTML]="getContent(item)"></ion-text>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="item.type == 1">
+      <iframe [src]="url"></iframe>
+    </ng-container>
+  </ng-container>
+</ion-content>

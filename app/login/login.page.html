@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-row class="mt-25 ion-justify-content-center">
+    <img src="/assets/icon/mission.png" width="140px" height="140px" class="mt-15 mb-5"/>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center mt-20">
+    <ion-item>
+      <ion-label class="d-flex ion-align-items-center">
+        <ion-text color="light">
+          <ion-icon name="person" class="font-20"></ion-icon>
+          手機：
+        </ion-text>
+      </ion-label>
+      <ion-input [(ngModel)]="phone" color="light"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row class="ion-justify-content-center mt-2">
+    <ion-item>
+      <ion-label class="d-flex ion-align-items-center">
+        <ion-text color="light">
+          <ion-icon name="lock" class="font-20"></ion-icon>
+        </ion-text>
+      </ion-label>
+      <ion-input color="light" [(ngModel)]="verifyCode" placeholder="請輸入驗證碼"></ion-input>
+      <ion-label slot="end">
+        <ng-container *ngIf="verifyRequire">
+          <ion-button shape="round" (click)="fetchVerifyCode()">
+            <ion-text color="primary">
+              獲取驗證碼
+            </ion-text>
+          </ion-button>
+        </ng-container>
+        <ng-container *ngIf="!verifyRequire">
+          <ion-button shape="round" (click)="fetchVerifyCode()">
+            <ion-text color="primary">
+              送出
+            </ion-text>
+          </ion-button>
+        </ng-container>
+      </ion-label>
+    </ion-item>
+  </ion-row>
+</ion-content>

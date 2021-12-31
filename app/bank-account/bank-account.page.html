@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>銀行帳號</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngFor="let item of banks">
+    <ion-item lines="none" bottom-line (click)="viewDetail(item)">
+      <ion-thumbnail slot="start">
+        <ion-icon name="card" class="font-28"></ion-icon>
+      </ion-thumbnail>
+      <ion-label>
+        <h5 class="d-flex ion-align-items-center">
+          {{ item.bank_name }}
+          <ng-container *ngIf="item.accept_status == 0">
+            <ion-text color="warning" class="d-flex ion-align-items-center ml-1 font-12">
+              <ion-icon name="alert"></ion-icon>
+              尚未驗證
+            </ion-text>
+          </ng-container>
+          <ng-container *ngIf="item.accept_status == 1">
+            <ion-text color="primary" class="d-flex ion-align-items-center ml-1 font-12">
+              <ion-icon name="checkmark-circle"></ion-icon>
+              已驗證
+            </ion-text>
+          </ng-container>
+          <ng-container *ngIf="item.accept_status == 2">
+            <ion-text color="danger" class="d-flex ion-align-items-center ml-1 font-12">
+              <ion-icon name="close-circle"></ion-icon>
+              已拒絕
+            </ion-text>
+          </ng-container>
+        </h5>
+        <h5 class="card-num" [attr.mode]="platform">{{ item.bank_account }}</h5>
+      </ion-label>
+      <ng-container *ngIf="item.is_default == 1 && item.accept_status == 1">
+        <ion-label slot="end" class="ion-text-right mt-4">
+          <h5>
+            [預設]
+          </h5>
+          <h5>
+            <ion-icon name="checkmark" color="success" class="font-20 mr-4"></ion-icon>
+          </h5>
+        </ion-label>
+      </ng-container>
+    </ion-item>
+  </ng-container>
+
+  <ion-item lines="none" [routerLink]="['/bank-account-add']">
+    <ion-label color="tertiary">
+      新增帳號
+    </ion-label>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,37 @@
+ion-item {
+  .card-num {
+
+    &[mode="ios"] {
+      font-family: -apple-system;
+    }
+
+    &[mode="md"] {
+      font-family: fantasy;
+    }
+  }
+}
+
+span.notification {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #fcc856;
+  border-radius: 10em;
+}
+
+ion-row.highlight-row {
+  background: #fff5da;
+}
+
+ion-item.withdraw-item {
+  --padding-start: 0px;
+}
+
+.verify-btn {
+  position: absolute;
+  bottom: 1em;
+  width: 80%;
+  left: 10%;
+}

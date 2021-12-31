@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>我的任務</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngFor="let item of missions">
+    <ion-row bg-white class="pl-4 pr-4 ion-margin mission-row">
+      <ng-container *ngIf="item.mission_status == 0 || item.mission_status == 1  || item.mission_status == 5">
+        <div class="top-bar incomplete"></div>
+      </ng-container>
+      <ng-container *ngIf="item.mission_status == 9 || item.mission_status == 10">
+        <div class="top-bar complete"></div>
+      </ng-container>
+      <ion-col>
+        <h4 class="mt-2 mb-2">{{ item.advertise_details.title }}</h4>
+        <ion-note color="medium">
+          C{{ item.id | number:'8.0-0' | trimComma }}
+        </ion-note>
+      </ion-col>
+
+      <ion-col class="ion-text-right">
+        <h6 class="mt-2 mb-2">
+          <ion-note color="medium" class="view-detail" (click)="showDetail(item)">
+            <ion-icon name="apps"></ion-icon>
+            查看詳情
+          </ion-note>
+        </h6>
+
+        <ion-chip color="secondary" class="mt-8 max-content-chip">
+          <ng-container *ngIf="item.mission_status == 0">
+            <ion-icon name="alert" color="warning"></ion-icon>
+          </ng-container>
+          <ng-container *ngIf="item.mission_status == 1 || item.mission_status == 5">
+            <ion-icon name="arrow-dropright-circle" color="medium"></ion-icon>
+          </ng-container>
+          <ng-container *ngIf="item.mission_status == 9">
+            <ion-icon name="close-circle" color="danger"></ion-icon>
+          </ng-container>
+          <ng-container *ngIf="item.mission_status == 10">
+            <ion-icon name="checkmark-circle" color="success"></ion-icon>
+          </ng-container>
+          <ion-label>
+            <ng-container *ngIf="item.mission_status == 0">等待申裝中</ng-container>
+            <ng-container *ngIf="item.mission_status == 1">任務進行中</ng-container>
+            <ng-container *ngIf="item.mission_status == 5">任務完成，審核中</ng-container>
+            <ng-container *ngIf="item.mission_status == 9">任務失敗</ng-container>
+            <ng-container *ngIf="item.mission_status == 10">任務成功</ng-container>
+          </ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+</ion-content>

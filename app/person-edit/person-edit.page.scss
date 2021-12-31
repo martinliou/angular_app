@@ -1,0 +1,33 @@
+ion-header {
+  .complete-str {
+    position: absolute;
+    right: 16px;
+    top: 15px;
+    font-size: 20px;
+  }
+}
+
+ion-content {
+  ion-row.person-row {
+    ion-item {
+      --border-color: var(--ion-color-dark) !important;
+    }
+
+    img {
+      border-radius: 10em;
+      width: 80px;
+      height: 80px;
+    }
+
+    ion-col.photo-column {
+      display: grid;
+      justify-content: center;
+    }
+  }
+
+  ion-row.logout-row {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>藍芽設定</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-row class="ion-margin-top">
+    <ion-text color="medium" class="font-14 ml-2 mb-1">關於</ion-text>
+  </ion-row>
+  <ion-item lines="none" detail bottom-line (click)="setupDialog()">
+    <ion-label>如何設定</ion-label>
+  </ion-item>
+  <ion-item lines="none" detail class="ion-margin-bottom" (click)="bleDeviceDialog()">
+    <ion-label>如何取到藍芽裝置</ion-label>
+  </ion-item>
+  <ion-row class="ion-margin-top">
+    <ion-text color="medium" class="font-14 ml-2 mb-1">已綁定裝置</ion-text>
+  </ion-row>
+  <ng-container *ngFor="let item of deviceLists">
+    <ion-item (click)="connectDevice(item)">
+      <ion-label>{{ item.name }}</ion-label>
+      <ng-container *ngIf="item.connected">
+        <img slot="end" width="30px" src="/assets/icon/ble-connect.png">
+      </ng-container>
+      <ng-container *ngIf="!item.connected">
+        <img slot="end" width="30px" src="/assets/icon/ble-not-connect.png">
+      </ng-container>
+    </ion-item>
+  </ng-container>
+
+</ion-content>

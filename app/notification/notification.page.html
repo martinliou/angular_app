@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>通知</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment mode="ios" [(ngModel)]="notifyType" class="ion-padding">
+    <ion-segment-button mode="ios" [value]="notifyArrs[0]">
+      <ion-label>個人訊息</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" [value]="notifyArrs[1]">
+      <ion-label>系統公告</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" [value]="notifyArrs[2]">
+      <ion-label>錢包更新</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container [ngSwitch]="notifyType">
+    <ion-list *ngSwitchCase="notifyArrs[0]">
+      <ng-container *ngFor="let item of personInfoData">
+        <ion-item lines="none" class="mb-2" (click)="viewDetail(item, 0)">
+          <ion-thumbnail slot="start">
+            <img src="../../assets/icon/user.png" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2 class="font-16">{{ item.title }}</h2>
+            <ion-text color="medium">
+              <p class="font-16 two-lines-layout" [innerHTML]="getContent(item)"></p>
+            </ion-text>
+            <ion-text color="medium">
+              <p class="font-12">{{ item.publish_at.split(' ').join('T') + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}</p>
+            </ion-text>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="notifyArrs[1]">
+      <ng-container *ngFor="let item of systemAnnoData">
+        <ion-item lines="none" class="mb-2" (click)="viewDetail(item, 1)">
+          <ion-thumbnail slot="start">
+            <img [src]="getThumbPhoto(item)" width="100%"
+              onerror="this.onerror=null;this.src='../../assets/ImageNotFound.png' " />
+          </ion-thumbnail>
+          <ion-label>
+            <h2 class="font-16">{{ item.title }}</h2>
+            <ion-text color="medium">
+              <p class="font-16 two-lines-layout" [innerHTML]="getContent(item)"></p>
+            </ion-text>
+            <ion-text color="medium">
+              <p class="font-12">{{ item.publish_at.split(' ').join('T') + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}</p>
+            </ion-text>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="notifyArrs[2]">
+      <ng-container *ngFor="let item of walletUpdateData">
+        <ion-item lines="none" class="mb-2">
+          <ion-thumbnail slot="start">
+            <ng-container *ngIf="item.type == 0">
+              <img src="../../assets/icon/order.png" />
+            </ng-container>
+            <ng-container *ngIf="item.type == 1">
+              <img src="../../assets/icon/pay.png" />
+            </ng-container>
+          </ion-thumbnail>
+          <ion-label>
+            <h2 class="font-16 two-lines-layout">{{ item.message }}</h2>
+            <ion-text color="medium">
+              <p class="font-12">{{ item.time.split(' ').join('T') + 'Z' | date:'yyyy-MM-dd HH:mm:ss' }}</p>
+            </ion-text>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+
+  </ng-container>
+</ion-content>

@@ -1,0 +1,75 @@
+<ng-container *ngIf="item.mission_status == 0">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button icon="arrow-back"></ion-back-button>
+      </ion-buttons>
+      <ion-title>時間確認</ion-title>
+      <ion-icon src="assets/icon/customer.svg" (click)="showHelp()"></ion-icon>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-row>
+      <ion-col class="pl-4 pr-4 pt-4">
+        <h4>
+          <h5 class="mt-2 mb-2">您選擇的任務<b>「{{ item.advertise_details.title }}」</b></h5>
+          <h5 class="mt-2 mb-2">安裝時間：
+            {{ item.install_date }}
+            <ng-container *ngIf="item.install_time == 0">早上</ng-container>
+            <ng-container *ngIf="item.install_time == 1">下午</ng-container>
+            <ng-container *ngIf="item.install_time == 2">晚上</ng-container>
+          </h5>
+          <h5 class="mt-2 mb-2">安裝地點：{{ item.install_location }}</h5>
+          <h5 class="mt-2 mb-2">溫馨提示：<br><br>
+            廣告安裝前，請先確認您所選擇的任務與實際收到任務內容一致，若有不同請立即聯繫客服人員處理。
+            廣告安裝完成後，請輸入序號啟動本次任務。
+          </h5>
+
+        </h4>
+
+        <ion-item class="mt-6">
+          <ion-label>輸入序號</ion-label>
+          <ion-input [(ngModel)]="serial"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-button color="primary" expand="block" class="verify-btn" (click)="confirmSerial()">確認
+    </ion-button>
+  </ion-content>
+</ng-container>
+<ng-container *ngIf="item.mission_status != 0">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button icon="arrow-back"></ion-back-button>
+      </ion-buttons>
+      <ion-title>我的任務</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-row>
+      <img [src]="item.advertise_details.photo" width="100%"
+        onerror="this.onerror=null;this.src='../../assets/ImageNotFound.png' " />
+    </ion-row>
+
+    <ion-row class="pl-3 pr-3">
+      <ion-col>
+        <h2>{{ item.advertise_details.title }}</h2>
+        <h5 class="mt-2 mb-4">{{ item.advertise_details.content }}</h5>
+
+        <ion-progress-bar color="primary" [value]="getProgressVal(item)" mode="md" class="mt-10"></ion-progress-bar>
+        <h5 class="ion-text-center mt-2">
+          {{ getDistDesc(item) }} KM
+        </h5>
+
+        <ng-container *ngIf="requireShowCamera(item)">
+          <h6 class="ion-text-center" (click)="navigateUploadCamera(item)">
+            <ion-icon name="camera" class="font-48" color="medium"></ion-icon>
+          </h6>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+</ng-container>

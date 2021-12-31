@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>隱私設定</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item lines="none" detail bg-white class="mb-1" (click)="showLocationSettings()">
+    <ion-label>地點</ion-label>
+    <ion-label slot="end" color="medium" class="ion-text-right ml-0">
+      <ng-container *ngIf="locationAuth == 0">
+        不允許使用定位功能
+      </ng-container>
+      <ng-container *ngIf="locationAuth == 1">
+        允許使用定位功能
+      </ng-container>
+      <ng-container *ngIf="locationAuth == 2">
+        僅在前景允許定位功能
+      </ng-container>
+      <ng-container *ngIf="locationAuth != 0 && locationAuth != 1 && locationAuth != 2">
+        尚未取得定位功能授權
+      </ng-container>
+    </ion-label>
+  </ion-item>
+  <ion-text color="medium" class="font-14 ml-2 mb-1">里程可透過裝置的定位服務提供更可靠的服務。</ion-text>
+
+  <ion-item lines="none" class="mt-6 mb-1">
+    <ion-label>推播通知(建議使用)</ion-label>
+    <ion-toggle mode="ios" color="success" [(ngModel)]="notification" (click)="updateNotification()"></ion-toggle>
+  </ion-item>
+  <ion-text color="medium" class="font-14 ml-2 mb-1">如要打開/取消通知，可前往>設定>通知</ion-text>
+
+  <ion-item lines="none" class="mt-6 mb-1">
+    <ion-label>系統公告(建議使用)</ion-label>
+    <ion-toggle mode="ios" color="success" [(ngModel)]="systemAnno" (click)="updateAnnounce()"></ion-toggle>
+  </ion-item>
+  <ion-text color="medium" class="font-14 ml-2 mb-1">系統版本、公告與更新資訊</ion-text>
+
+  <ion-item lines="none" class="mt-6 mb-1">
+    <ion-label>個人訊息(建議使用)</ion-label>
+    <ion-toggle mode="ios" color="success" [(ngModel)]="personMsg" (click)="updatePersonalMessage()"></ion-toggle>
+  </ion-item>
+  <ion-text color="medium" class="font-14 ml-2 mb-1">個人帳號訊息通知與提醒</ion-text>
+
+  <ion-item lines="none" class="mt-6 mb-1">
+    <ion-label>錢包更新(建議使用)</ion-label>
+    <ion-toggle mode="ios" color="success" [(ngModel)]="walletUpdate" (click)="updateWallet()"></ion-toggle>
+  </ion-item>
+  <ion-text color="medium" class="font-14 ml-2 mb-1">熱門活動與最新優惠推薦提醒</ion-text>
+</ion-content>
